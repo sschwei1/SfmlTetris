@@ -17,6 +17,13 @@ Game::~Game() {
 }
 
 // Functions
+void Game::updateDt() {
+    this->dt = this->dtClock.restart().asSeconds();
+
+    system("cls");
+    std::cout << this->dt << "\n";
+}
+
 void Game::updateSFMLEvents() {
     while (this->window->pollEvent(this->sfEvent)){
         if(this->sfEvent.type == sf::Event::Closed){
@@ -36,8 +43,10 @@ void Game::render() {
 
 void Game::run() {
     while (this->window->isOpen()){
+        this->updateDt();
         this->update();
         this->render();
     }
 }
+
 
