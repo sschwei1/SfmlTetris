@@ -19,9 +19,6 @@ Game::~Game() {
 // Functions
 void Game::updateDt() {
     this->dt = this->dtClock.restart().asSeconds();
-
-    system("cls");
-    std::cout << this->dt << "\n";
 }
 
 void Game::updateSFMLEvents() {
