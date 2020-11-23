@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.15)
 
 #define constants
 set(PROJECT_NAME SfmlTetris)
-set(SOURCE_FILE main.cpp)
+set(SOURCE_FILE "source/main.cpp" "source/Game.cpp" "source/Game.h")
 
 # project name
 project(${PROJECT_NAME})
@@ -23,8 +23,8 @@ if (WIN32)
     set(SFML_STATIC_LIBRARIES TRUE)
 endif (WIN32)
 
-find_package(SFML 2.5.1 COMPONENTS system window graphics network audio)
+find_package(SFML 2.5.1 COMPONENTS system window graphics audio network)
 add_executable(${PROJECT_NAME} ${SOURCE_FILE})
 
 set(SFML_STATIC_LIBRARIES TRUE)
-target_link_libraries(${PROJECT_NAME} sfml-graphics sfml-window sfml-system)
+target_link_libraries(${PROJECT_NAME} sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
