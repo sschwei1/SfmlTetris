@@ -25,10 +25,19 @@ public:
     virtual ~Game();
 
     // Functions
+
+    // Regular
+    void endApplication();
+
+    // update
     void updateDt();
     void updateSFMLEvents();
     void update();
+
+    // render
     void render();
+
+    // core
     void run();
 };
 

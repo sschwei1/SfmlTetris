@@ -13,13 +13,19 @@ GameState::~GameState() {
 }
 
 void GameState::endState() {
+    std::cout << "Ending GameState" << "\n";
+}
 
+void GameState::updateKeybinds(const float &dt) {
+    this->checkForQuit();
 }
 
 void GameState::update(const float& dt) {
-    std::cout << "Hello from GameState" << "\n";
+    this->updateKeybinds(dt);
+
+    this->tile.update(dt);
 }
 
 void GameState::render(sf::RenderTarget* target) {
-
+    this->tile.render(target == nullptr ? target : this->window);
 }

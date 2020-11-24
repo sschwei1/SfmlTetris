@@ -45,6 +45,10 @@ Game::~Game() {
 }
 
 // Functions
+void Game::endApplication() {
+    std::cout << "Ending Application" << "\n";
+}
+
 void Game::updateDt() {
     this->dt = this->dtClock.restart().asSeconds();
 }
@@ -62,6 +66,17 @@ void Game::update() {
 
     if(!this->states.empty()){
         this->states.top()->update(this->dt);
+
+        if(this->states.top()->getQuit()){
+            this->states.top()->endState();
+            delete this->states.top();
+            this->states.pop();
+        }
+    }
+    // Application end
+    else{
+        this->endApplication();
+        this->window->close();
     }
 }
 

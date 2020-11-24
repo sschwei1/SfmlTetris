@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.15)
 
 #define constants
 set(PROJECT_NAME SfmlTetris)
-set(SOURCE_FILE "source/main.cpp" "source/Game.cpp" "source/Game.h" source/states/State.cpp source/states/State.h source/states/GameState.cpp source/states/GameState.h)
+set(SOURCE_FILE "source/main.cpp" "source/Game.cpp" "source/Game.h" source/states/State.cpp source/states/State.h source/states/GameState.cpp source/states/GameState.h source/entities/Entity.cpp source/entities/Entity.h)
 
 # project name
 project(${PROJECT_NAME})
