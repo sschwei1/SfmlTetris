@@ -1,7 +1,7 @@
 #ifndef SFMLTETRIS_GAME_H
 #define SFMLTETRIS_GAME_H
 
-#include "State.h"
+#include "states/GameState.h"
 
 
 class Game {
@@ -13,8 +13,11 @@ private:
     sf::Clock dtClock;
     float dt;
 
+    std::stack<State*> states;
+
     // Initializer functions
     void initWindow();
+    void initStates();
 
 public:
     // Constructor/Destructor
