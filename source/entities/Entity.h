@@ -9,6 +9,7 @@
 #include <vector>
 #include <stack>
 #include <map>
+#include <stdlib.h>
 
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>

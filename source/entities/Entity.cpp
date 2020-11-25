@@ -31,6 +31,36 @@ void Entity::update(const float &dt) {
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::S)){
         this->move(dt, 0.f, 1.f);
     }
+
+    /*
+     * 0 => A
+     * 1 => B
+     * 2 => X
+     * 3 => Y
+     * 4 => LB
+     * 5 => RB
+     * 6 => Back
+     * 7 => Start
+     * 8 => JL
+     * 9 => JR
+     */
+
+    if(sf::Joystick::isConnected(0)){
+        int th = 30;
+        float posX = sf::Joystick::getAxisPosition(0, sf::Joystick::X);
+        float posY = sf::Joystick::getAxisPosition(0, sf::Joystick::Y);
+
+        if(abs(posX) < 30){
+            posX = 0;
+        }
+        if(abs(posY) < 30){
+            posY = 0;
+        }
+
+        std::cout << "X:" << posX << " Y:" << posY << "\n";
+
+        this->move(dt, posX/100, posY/100);
+    }
 }
 
 void Entity::render(sf::RenderTarget* target) {
