@@ -15,8 +15,11 @@ private:
 
     std::stack<State*> states;
 
+    std::map<std::string, sf::Keyboard::Key> supportedKeys;
+
     // Initializer functions
     void initWindow();
+    void initKeys();
     void initStates();
 
 public:

@@ -6,19 +6,26 @@
 class State {
 protected:
     sf::RenderWindow* window;
-    std::vector<sf::Texture> textures;
+    std::map<std::string, sf::Keyboard::Key>* supportedKeys;
+    std::map<std::string, sf::Keyboard::Key> keybinds;
     bool quit;
 
-public:
-    const bool& getQuit() const;
+    // resources
+    std::vector<sf::Texture> textures;
 
-    State(sf::RenderWindow* window);
+    // functions
+    virtual void initKeybinds() = 0;
+
+public:
+    State(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys);
     virtual ~State();
+
+    const bool& getQuit() const;
 
     virtual void checkForQuit();
 
     virtual void endState() = 0;
-    virtual void updateKeybinds(const float& dt) = 0;
+    virtual void updateInput(const float& dt) = 0;
     virtual void update(const float& dt) = 0;
     virtual void render(sf::RenderTarget* target = nullptr) = 0;
 };

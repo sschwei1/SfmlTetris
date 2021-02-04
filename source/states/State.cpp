@@ -4,8 +4,9 @@
 
 #include "State.h"
 
-State::State(sf::RenderWindow* window) {
+State::State(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys) {
     this->window = window;
+    this->supportedKeys = supportedKeys;
     this->quit = false;
 }
 
