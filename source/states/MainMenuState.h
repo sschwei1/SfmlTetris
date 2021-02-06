@@ -2,13 +2,18 @@
 #define SFMLTETRIS_MAINMENUSTATE_H
 
 #include "GameState.h"
+#include "../resources/Button.h"
 
 class MainMenuState : public State {
 private:
     // variables
     sf::RectangleShape background;
+    sf::Font font;
+
+    Button* gamestate_btn;
 
     // functions
+    void initFonts();
     void initKeybinds();
 
 public:

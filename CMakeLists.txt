@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.15)
 
 #define constants
 set(PROJECT_NAME SfmlTetris)
-set(SOURCE_FILE "source/main.cpp" "source/Game.cpp" "source/Game.h" source/states/State.cpp source/states/State.h source/states/GameState.cpp source/states/GameState.h source/entities/Entity.cpp source/entities/Entity.h source/states/MainMenuState.cpp source/states/MainMenuState.h)
+set(SOURCE_FILE "source/main.cpp" "source/Game.cpp" "source/Game.h" source/states/State.cpp source/states/State.h source/states/GameState.cpp source/states/GameState.h source/entities/Entity.cpp source/entities/Entity.h source/states/MainMenuState.cpp source/states/MainMenuState.h source/resources/Button.cpp source/resources/Button.h)
 
 # project name
 project(${PROJECT_NAME})
@@ -36,3 +36,7 @@ target_link_libraries(${PROJECT_NAME} sfml-system sfml-window sfml-graphics sfml
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_directory
         ${CMAKE_SOURCE_DIR}/source/config/ $<TARGET_FILE_DIR:${PROJECT_NAME}>/config/)
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/source/fonts/ $<TARGET_FILE_DIR:${PROJECT_NAME}>/fonts/)

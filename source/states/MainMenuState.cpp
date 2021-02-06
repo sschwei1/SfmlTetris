@@ -1,5 +1,11 @@
 #include "MainMenuState.h"
 
+void MainMenuState::initFonts() {
+    if(!this->font.loadFromFile("fonts/Overpass-Light.ttf")){
+        throw("ERROR::MAIN_MENU_STATE::COULD_NOT_LOAD_FONT");
+    }
+}
+
 void MainMenuState::initKeybinds() {
 //    this->keybinds["END_STATE"] = this->supportedKeys->at("ESC");
     std::ifstream ifs("config/gamestate_keybinds.ini");
@@ -18,14 +24,19 @@ void MainMenuState::initKeybinds() {
 
 MainMenuState::MainMenuState(sf::RenderWindow* window , std::map<std::string, sf::Keyboard::Key>* supportedKeys)
         : State(window, supportedKeys) {
+    this->initFonts();
     this->initKeybinds();
+
+    this->gamestate_btn = new Button(100, 100, 150, 50,
+        &this->font, "New Game",
+        sf::Color(70,70,70,200), sf::Color(150,150,150,200), sf::Color(20,20,20,200));
 
     this->background.setSize(sf::Vector2f(window->getSize().x, window->getSize().y));
     this->background.setFillColor(sf::Color::Green);
 }
 
 MainMenuState::~MainMenuState() {
-
+    delete this->gamestate_btn;
 }
 
 void MainMenuState::endState() {
@@ -39,7 +50,10 @@ void MainMenuState::updateInput(const float &dt) {
 }
 
 void MainMenuState::update(const float& dt) {
+    this->updateMousePositions();
     this->updateInput(dt);
+
+    this->gamestate_btn->update(this->mousePosView);
 }
 
 void MainMenuState::render(sf::RenderTarget* target) {
@@ -47,4 +61,5 @@ void MainMenuState::render(sf::RenderTarget* target) {
         target = this->window;
 
     target->draw(this->background);
+    gamestate_btn->render(target);
 }
