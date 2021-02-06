@@ -1,7 +1,7 @@
 #ifndef SFMLTETRIS_GAME_H
 #define SFMLTETRIS_GAME_H
 
-#include "states/GameState.h"
+#include "states/MainMenuState.h"
 
 
 class Game {
