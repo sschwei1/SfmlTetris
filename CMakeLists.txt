@@ -23,8 +23,16 @@ if (WIN32)
     set(SFML_STATIC_LIBRARIES TRUE)
 endif (WIN32)
 
+if(MINGW)
+    set(CMAKE_EXE_LINKER_FLAGS ${CMAKE_EXE_LINKER_FLAGS} -static-libstdc++)
+endif()
+
 find_package(SFML 2.5.1 COMPONENTS system window graphics audio network)
 add_executable(${PROJECT_NAME} ${SOURCE_FILE})
 
 set(SFML_STATIC_LIBRARIES TRUE)
 target_link_libraries(${PROJECT_NAME} sfml-system sfml-window sfml-graphics sfml-audio sfml-network)
+
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_SOURCE_DIR}/source/config/ $<TARGET_FILE_DIR:${PROJECT_NAME}>/config/)
