@@ -18,10 +18,11 @@ private:
     void initButtons();
 
 public:
-    MainMenuState(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys);
+    MainMenuState(sf::RenderWindow* window, std::stack<State*>* states, std::map<std::string, sf::Keyboard::Key>* supportedKeys);
     virtual ~MainMenuState();
 
     // Functions
+    void checkForQuit();
     void endState();
     void updateInput(const float& dt);
     void updateButtons();

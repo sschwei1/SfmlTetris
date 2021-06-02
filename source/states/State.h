@@ -6,6 +6,7 @@
 class State {
 protected:
     sf::RenderWindow* window;
+    std::stack<State*>* states;
     std::map<std::string, sf::Keyboard::Key>* supportedKeys;
     std::map<std::string, sf::Keyboard::Key> keybinds;
     bool quit;
@@ -21,12 +22,12 @@ protected:
     virtual void initKeybinds() = 0;
 
 public:
-    State(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys);
+    State(sf::RenderWindow* window, std::stack<State*>* states, std::map<std::string, sf::Keyboard::Key>* supportedKeys);
     virtual ~State();
 
     const bool& getQuit() const;
 
-    virtual void checkForQuit();
+    virtual void checkForQuit() = 0;
 
     virtual void endState() = 0;
     virtual void updateMousePositions();

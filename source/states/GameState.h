@@ -11,10 +11,11 @@ private:
     void initKeybinds();
 
 public:
-    GameState(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys);
+    GameState(sf::RenderWindow* window, std::stack<State*>* states, std::map<std::string, sf::Keyboard::Key>* supportedKeys);
     virtual ~GameState();
 
     // Functions
+    void checkForQuit();
     void endState();
     void updateInput(const float& dt);
     void update(const float& dt);

@@ -33,8 +33,8 @@ void MainMenuState::initButtons() {
 
 }
 
-MainMenuState::MainMenuState(sf::RenderWindow* window , std::map<std::string, sf::Keyboard::Key>* supportedKeys)
-        : State(window, supportedKeys) {
+MainMenuState::MainMenuState(sf::RenderWindow* window,std::stack<State*>* states, std::map<std::string, sf::Keyboard::Key>* supportedKeys)
+        : State(window, states, supportedKeys) {
     this->initFonts();
     this->initKeybinds();
     this->initButtons();
@@ -65,7 +65,7 @@ void MainMenuState::updateButtons() {
     }
 
     if(this->buttons["GAME_STATE"]->isPressed()){
-//        this->states.push(new GameState(this->window, this->supportedKeys));
+        this->states->push(new GameState(this->window, this->states, this->supportedKeys));
     }
 
     if(this->buttons["EXIT_STATE"]->isPressed()){
@@ -91,4 +91,10 @@ void MainMenuState::render(sf::RenderTarget* target) {
 
     target->draw(this->background);
     this->renderButtons(target);
+}
+
+void MainMenuState::checkForQuit() {
+//    if(sf::Keyboard::isKeyPressed(this->keybinds.at("END_STATE"))){
+//        this->quit = true;
+//    }
 }

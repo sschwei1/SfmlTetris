@@ -19,8 +19,8 @@ void GameState::initKeybinds() {
     ifs.close();
 }
 
-GameState::GameState(sf::RenderWindow* window , std::map<std::string, sf::Keyboard::Key>* supportedKeys)
-    : State(window, supportedKeys) {
+GameState::GameState(sf::RenderWindow* window, std::stack<State*>* states, std::map<std::string, sf::Keyboard::Key>* supportedKeys)
+    : State(window, states, supportedKeys) {
     this->initKeybinds();
 }
 
@@ -58,4 +58,10 @@ void GameState::render(sf::RenderTarget* target) {
         target = this->window;
 
     this->tile.render(target);
+}
+
+void GameState::checkForQuit() {
+    if(sf::Keyboard::isKeyPressed(this->keybinds.at("END_STATE"))){
+        this->quit = true;
+    }
 }

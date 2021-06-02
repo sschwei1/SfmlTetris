@@ -4,8 +4,9 @@
 
 #include "State.h"
 
-State::State(sf::RenderWindow* window, std::map<std::string, sf::Keyboard::Key>* supportedKeys) {
+State::State(sf::RenderWindow* window, std::stack<State*>* states, std::map<std::string, sf::Keyboard::Key>* supportedKeys) {
     this->window = window;
+    this->states = states;
     this->supportedKeys = supportedKeys;
     this->quit = false;
 }
@@ -19,9 +20,7 @@ const bool &State::getQuit() const {
 }
 
 void State::checkForQuit() {
-    if(sf::Keyboard::isKeyPressed(this->keybinds.at("END_STATE"))){
-        this->quit = true;
-    }
+
 }
 
 void State::updateMousePositions() {
